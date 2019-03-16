@@ -2,3 +2,4 @@
 node_modules
 ts-build
 yarn-error.log
+package-lock.json

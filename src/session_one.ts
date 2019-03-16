@@ -1,11 +1,9 @@
-const TODO = () => Error('Not implemented')
-
 /**
  * 1: Return the sum of two numbers
  */
 
 export function sum(a: number, b: number): number {
-    throw TODO()
+    return a + b;
 }
 
 /**
@@ -18,7 +16,9 @@ export interface Vec2 {
 }
 
 export function lengthVec2(v: Vec2): number {
-    throw TODO()
+    const xLen: number = v.x * v.x;
+    const yLen: number = v.y * v.y;
+    return Math.sqrt(xLen + yLen)
 }
 
 /**
@@ -30,7 +30,10 @@ export interface Vec3 extends Vec2 {
 }
 
 export function lengthVec3(v: Vec3): number {
-    throw TODO()
+    const xLen: number = Math.pow(v.x, 2);
+    const yLen: number = Math.pow(v.y, 2);
+    const zLen: number = Math.pow(v.z, 2)
+    return Math.sqrt(xLen + yLen + zLen)
 }
 
 /**
@@ -38,7 +41,11 @@ export function lengthVec3(v: Vec3): number {
  */
 
 export function fibo(n: number): number {
-    throw TODO()
+    if(n <= 1) {
+        return n;
+    } else {
+        return fibo(n-1) + fibo(n-2);
+    }
 }
 
 /**
@@ -46,7 +53,13 @@ export function fibo(n: number): number {
  */
 
 export function longestOfThree(a: string, b: string, c: string): string {
-    throw TODO()
+    if(a.length >= b.length && a.length >= c.length) {
+        return a;
+    } else if( b.length >= a.length && b.length >= c.length) {
+        return b;
+    } else {
+        return c;
+    }
 }
 
 /**
@@ -54,14 +67,20 @@ export function longestOfThree(a: string, b: string, c: string): string {
  */
 
 export function longestOfMany(...strings: string[]): string {
-    throw TODO()
+    let temp: string = strings[0]
+    for(let entry of strings) {
+        if(entry.length >= temp.length) {
+            temp = entry;
+        }
+    }
+    return temp;
 }
 
 /**
  * Check if a value is a number
  */
 export function isNumber(value: any): value is number {
-    throw TODO()
+    return (typeof value == "number");
 }
 
 export interface User {
@@ -73,7 +92,7 @@ export interface User {
  * Get users nick name, or return a name if one doesn't exist
  */
 export function getUserHandle(user: User): string {
-    throw TODO()
+    return user.nick ? user.nick : user.name
 }
 
 export interface Country {
@@ -86,7 +105,11 @@ export interface Country {
  * Test if a given object is a Country
  */
 export function isCountry(obj: unknown): obj is Country {
-    throw TODO()
+    const country = obj as Country;
+    return ( country &&
+        typeof country.name === 'string' &&
+        typeof country.code === 'string' &&
+        typeof country.population === 'number') 
 }
 
 /**
@@ -97,7 +120,13 @@ export function greaterThanNumber(
     input: Array<number>,
     n: number
 ): Array<number> {
-    throw TODO()
+    let greaterNumbers: number[] = [];
+    for(let num of input) {
+        if(num > n) {
+            greaterNumbers.push(num);
+        }
+    };
+    return greaterNumbers;
 }
 
 /**
@@ -105,5 +134,5 @@ export function greaterThanNumber(
  */
 
 export function toPowerOf(input: Array<number>, n: number): Array<number> {
-    throw TODO()
+    return input.map(num => Math.pow(num, n))
 }

@@ -63,7 +63,7 @@ describe('Session one', () => {
         const sequence = [0, 1, 1, 2, 3, 5, 8, 13]
 
         sequence.forEach((result, index) => {
-            const nth = index + 1
+            const nth = index;
             it(`should return ${result} as ${nth}th fibonacci`, () => {
                 expect(fibo(nth)).toEqual(result)
             })
